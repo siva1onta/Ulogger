@@ -1,0 +1,6 @@
+#!/bin/bash
+
+PREFIX_ABS='@PREFIX_ABS@'
+export LD_LIBRARY_PATH=${PREFIX_ABS}/lib:$LD_LIBRARY_PATH
+export PATH=${PREFIX_ABS}/bin:$PATH
+export MANPATH=${PREFIX_ABS}/man:$MANPATH

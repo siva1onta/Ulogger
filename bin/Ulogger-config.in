@@ -1,0 +1,14 @@
+#!/bin/bash
+PREFIX_ABS='@PREFIX_ABS@'
+
+if [ "$1" = "--cflags" ]; then
+    echo "-I${PREFIX_ABS}/include"
+elif [ "$1" = "--libs" ]; then
+    echo "-L${PREFIX_ABS}/lib -lUlogger"
+elif [ "$1" = "--prefix" ]; then
+    echo "${PREFIX_ABS}"
+else
+    echo "Usage: Ulogger-config [--cflags|--libs|--prefix]"
+    exit 1
+fi
+
