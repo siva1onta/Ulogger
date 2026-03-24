@@ -39,7 +39,8 @@ namespace Utils {
 
     char time_buf[32] {0};
     time_t now = time(nullptr);
-    tm local_time = *localtime(&now);
+    tm local_time;
+    localtime_r(&now, &local_time);
     strftime(time_buf, sizeof(time_buf), "%Y-%m-%d %H:%M:%S", &local_time);
 
     char file_buf[PATH_MAX] {0};
@@ -60,11 +61,14 @@ namespace Utils {
     format_buf[512 - 1] = 0;
     va_end(args);
 
+    std::lock_guard lckgd(m_mutex);
     fprintf(m_file, "[%s] [%s:%d] %s\n", time_buf, file_buf, line, format_buf);
     fflush(m_file);
+
   }
 
   void Ulogger::Open(const char *path) {
+    std::lock_guard lckgd(m_mutex);
     if (m_file != nullptr) {
       Close();
     }
@@ -75,6 +79,7 @@ namespace Utils {
   }
 
   void Ulogger::Close() {
+    std::lock_guard lckgd(m_mutex);
     if (m_file == nullptr) {
       return;
     }

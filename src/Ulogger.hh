@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <cstdio>
+#include <mutex>
 
 namespace Utils {
 
@@ -28,6 +29,7 @@ namespace Utils {
     Ulogger &operator=(const Ulogger &sample) = delete;
 
     static Ulogger *m_instance;
+    std::mutex m_mutex;
     Level m_level;
     FILE *m_file;
   };
