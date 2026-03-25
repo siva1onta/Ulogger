@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <climits>
 #include <cstdio>
 #include <mutex>
 
@@ -18,6 +19,7 @@ namespace Utils {
 
     static Ulogger *GetInstance();
     void SetLevel(Level level);
+    void SetMaxSize(long maxsize);
     void Log(Level level, const char *file, const int line, const char *format, ...);
     void Open(const char *path);
     void Close();
@@ -31,7 +33,9 @@ namespace Utils {
     static Ulogger *m_instance;
     std::mutex m_mutex;
     Level m_level;
+    char m_filepath[PATH_MAX];
     FILE *m_file;
+    long m_maxsize;
   };
 
 #define Debug(format, ...) Ulogger::GetInstance()->Log(Ulogger::DEBUG, __FILE__, __LINE__, format, ##__VA_ARGS__)
