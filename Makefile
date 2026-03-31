@@ -34,8 +34,6 @@ TEST_OUT = $(TEST_DIR)/test_$(LIB_NAME)
 
 ########################## Build ############################
 all: $(LIB_OUT) $(CONFIG_SCRIPT_OUT) $(ENV_SCRIPT_OUT)
-	# echo "OK"
-	# echo ${LIB_SRC}
 
 # Dynamic library
 $(LIB_OUT): $(LIB_OBJ)
@@ -64,7 +62,7 @@ install: all
 	mkdir -p $(INSTALL_BIN) $(INSTALL_LIB) $(INSTALL_INC) $(INSTALL_MAN)
 	cp -f lib$(LIB_NAME).so.$(LIB_VERSION) $(INSTALL_LIB)/
 	ln -sf $(INSTALL_LIB)/lib$(LIB_NAME).so.$(LIB_VERSION) $(INSTALL_LIB)/lib$(LIB_NAME).so
-	cp -f $(SRC_DIR)/$(LIB_NAME).hh $(INSTALL_INC)/
+	cp -f $(SRC_DIR)/$(LIB_NAME).h $(INSTALL_INC)/
 	cp -f $(CONFIG_SCRIPT_OUT) $(INSTALL_BIN)/
 	cp -f $(ENV_SCRIPT_OUT) $(INSTALL_BIN)/
 	cp -f $(MAN_DIR)/$(LIB_NAME).1 $(INSTALL_MAN)/
@@ -72,7 +70,7 @@ install: all
 ########################## Uninstall ############################
 uninstall:
 	rm -f $(INSTALL_LIB)/lib$(LIB_NAME).so*
-	rm -f $(INSTALL_INC)/$(LIB_NAME).hh
+	rm -f $(INSTALL_INC)/$(LIB_NAME).h
 	rm -f $(INSTALL_BIN)/$(LIB_NAME)-config
 	rm -f $(INSTALL_BIN)/$(LIB_NAME)-env.sh
 	rm -f $(INSTALL_MAN)/$(LIB_NAME).1

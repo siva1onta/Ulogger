@@ -1,4 +1,4 @@
-#include "../src/Ulogger.hh"
+#include "../src/Ulogger.h"
 
 #include <thread>
 #include <unistd.h>
