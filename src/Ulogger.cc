@@ -9,8 +9,6 @@
 #include <cstring>
 #include <mutex>
 
-namespace Utils {
-
 Ulogger *Ulogger::m_instance = nullptr;
 
 Ulogger::Ulogger() {
@@ -117,5 +115,3 @@ void Ulogger::Close() {
     perror("Failed to close log file");
   }
 }
-
-}// namespace Utils

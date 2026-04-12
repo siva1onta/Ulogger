@@ -1,11 +1,9 @@
-﻿#ifndef UTILS_ULOGGER_H_
-#define UTILS_ULOGGER_H_
+﻿#ifndef ULOGGER_H_
+#define ULOGGER_H_
 
 #include <climits>
 #include <cstdio>
 #include <mutex>
-
-namespace Utils {
 
 class Ulogger {
 
@@ -46,7 +44,5 @@ class Ulogger {
 #define Warn(format, ...) Ulogger::GetInstance()->Log(Ulogger::WARN, __FILE__, __LINE__, format, ##__VA_ARGS__)
 #define Error(format, ...) Ulogger::GetInstance()->Log(Ulogger::ERROR, __FILE__, __LINE__, format, ##__VA_ARGS__)
 #define Fatal(format, ...) Ulogger::GetInstance()->Log(Ulogger::FATAL, __FILE__, __LINE__, format, ##__VA_ARGS__)
-
-}// namespace Utils
 
 #endif
