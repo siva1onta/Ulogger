@@ -31,6 +31,13 @@ class Ulogger {
   Ulogger();
   ~Ulogger();
 
+  const char m_levelname[LEVEL_COUNT][6] = {
+    "DEBUG",
+    "INFO ",
+    "WARN ",
+    "ERROR",
+    "FATAL"
+  };
   static Ulogger *m_instance;
   std::mutex m_mutex;
   Level m_level;

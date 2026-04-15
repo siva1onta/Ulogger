@@ -67,7 +67,7 @@ void Ulogger::Log(Level level, const char *file, const int line, const char *for
 
   std::lock_guard lckgd(m_mutex);
 
-  if (fprintf(m_file, "[%s] [%s:%d] %s\n", time_buf, file_buf, line, format_buf) < 0) {
+  if (fprintf(m_file, "[%s] [%s] [%s:%d] %s\n", m_levelname[level], time_buf, file_buf, line, format_buf) < 0) {
     perror("Failed to write to log file");
   }
   fflush(m_file);

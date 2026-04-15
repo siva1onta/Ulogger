@@ -3,8 +3,6 @@
 #include <thread>
 #include <unistd.h>
 
-using namespace Utils;
-
 void CallLog(int threadid) {
   for (int id = 0; id < 100; ++id) {
     Info("%d + %d = %d", threadid, id, threadid + id);
@@ -14,7 +12,7 @@ void CallLog(int threadid) {
 
 int main() {
 
-  Ulogger::GetInstance()->Open("/home/siva1onta/WORK/Ulogger/test.log");
+  Ulogger::GetInstance()->Open("./test.log");
   Ulogger::GetInstance()->SetLevel(Ulogger::DEBUG);
   Ulogger::GetInstance()->SetMaxSize(1024);
 
